@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/x-icon" href="favicon.ico/ms-icon-144x144.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+
+    <title>Nathan Corp</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #2196F3;
+        }
+
+        .website-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            grid-gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .website-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .website-card h2 {
+            margin-top: 0;
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #000000;
+        }
+
+        .iframe-container {
+            position: relative;
+            padding-bottom: 75%; /* Aspect ratio 4:3 for the iframe */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .toggle-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .toggle-label {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #000000;
+        }
+
+        .toggle-input {
+            display: none;
+        }
+
+        .toggle-slider {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+
+        .toggle-slider .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 26px;
+        }
+
+        .toggle-slider .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        .toggle-input:checked + .toggle-slider .slider {
+            background-color: #0000ff;
+        }
+
+        .toggle-input:checked + .toggle-slider .slider:before {
+            transform: translateX(22px);
+        }
+
+        .toggle-input:checked + .toggle-slider .slider:after {
+            content: 'Dark Mode';
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translate(-50%, -50%);
+        }
+        
+        .dark-mode {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        .dark-mode .website-card {
+            background-color: #222222;
+        }
+
+        .dark-mode .website-card h2 {
+            color: #ffffff;
+        }
+
+        .dark-mode .toggle-label {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Nathan Corp</h1>
+        <div class="toggle-container">
+            <label class="toggle-label" for="dark-mode">Light Mode</label>
+            <label class="toggle-slider">
+                <input class="toggle-input" type="checkbox" id="dark-mode">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="website-grid">
+            <div class="website-card">
+                <h2>NathanGPT</h2>
+                <div class="iframe-container">
+                    <iframe src="https://nathangpt-eight.vercel.app/" id="nathangpt" frameborder="0"></iframe>
+                </div>
+            </div>
+            <div class="website-card">
+                <h2>Paddle Board Game</h2>
+                <div class="iframe-container">
+                    <iframe src="https://pbg-zeta.vercel.app/" id="pbgzeta" frameborder="0"></iframe>
+                </div>
+            </div>
+            <div class="website-card">
+                <h2>Figure Out What Ur Name Means</h2>
+                <div class="iframe-container">
+                    <iframe src="https://figureoutwhaturnamemeans.vercel.app/" id="figuroutname" frameborder="0"></iframe>
+                </div>
+            </div>
+            <div class="website-card">
+                <h2>Random Number Generator</h2>
+                <div class="iframe-container">
+                    <iframe src="https://randnumbergen.vercel.app/" id="randnumgen" frameborder="0"></iframe>
+                </div>
+            </div>
+            <div class="website-card">
+                <h2>Random Name Generator</h2>
+                <div class="iframe-container">
+                    <iframe src="https://randnamegen.vercel.app/" id="randnamegen" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const darkModeToggle = document.getElementById("dark-mode");
+
+            darkModeToggle.addEventListener("change", () => {
+                document.body.classList.toggle("dark-mode");
+                const toggleLabel = document.querySelector(".toggle-label");
+                toggleLabel.textContent = darkModeToggle.checked ? "Dark Mode" : "Light Mode";
+            });
+
+            // Set initial mode based on system preference
+            if (
+                window.matchMedia &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+            ) {
+                darkModeToggle.checked = true;
+                document.body.classList.add("dark-mode");
+                const toggleLabel = document.querySelector(".toggle-label");
+                toggleLabel.textContent = "Dark Mode";
+            }
+        </script>
+    </div>
+</body>
+</html>
