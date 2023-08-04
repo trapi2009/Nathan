@@ -67,69 +67,6 @@
             border: none;
         }
 
-        .toggle-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .toggle-label {
-            font-weight: bold;
-            margin-right: 10px;
-            color: #000000;
-        }
-
-        .toggle-input {
-            display: none;
-        }
-
-        .toggle-slider {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 26px;
-        }
-
-        .toggle-slider .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: 0.4s;
-            border-radius: 26px;
-        }
-
-        .toggle-slider .slider:before {
-            position: absolute;
-            content: "";
-            height: 18px;
-            width: 18px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: 0.4s;
-            border-radius: 50%;
-        }
-
-        .toggle-input:checked + .toggle-slider .slider {
-            background-color: #0000ff;
-        }
-
-        .toggle-input:checked + .toggle-slider .slider:before {
-            transform: translateX(22px);
-        }
-
-        .toggle-input:checked + .toggle-slider .slider:after {
-            content: 'Dark Mode';
-            color: white;
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translate(-50%, -50%);
-        }
-        
         .dark-mode {
             background-color: #000000;
             color: #ffffff;
@@ -143,19 +80,71 @@
             color: #ffffff;
         }
 
-        .dark-mode .toggle-label {
+        /* Additional styles for reload buttons */
+        .reload-button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #2196F3;
             color: #ffffff;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .reload-button:hover {
+            background-color: #0d8bf4;
+        }
+
+        /* Additional styles for dark mode toggle icons */
+        .toggle-icon {
+            font-size: 25px; /* Increase the font size to make it bigger */
+            cursor: pointer; /* Add cursor pointer to show it's clickable */
+            margin-right: 10px; /* Add some spacing between icons */
+            transition: transform 0.3s; /* Add transition for smooth rotation */
+        }
+
+        /* Additional styles for dark mode toggle container */
+        .toggle-container {
+            text-align: center;
+            margin-bottom: 20px;
+            position: absolute; /* Position the container absolutely */
+            top: 0.00000001; /* Position at the top */
+            left: 50%; /* Center the container horizontally */
+            transform: translateX(-50%); /* Center the container perfectly */
+        }
+
+        .toggle-container .toggle-icon {
+            margin: 0; /* Remove default margin for better alignment */
+        }
+
+        /* Additional styles for dark mode toggle label */
+        .toggle-label {
+            font-weight: bold;
+            color: #000000;
+            cursor: pointer;
+        }
+
+        /* Additional styles for dark mode toggle input */
+        .toggle-input {
+            display: none; /* Hide the default input */
+        }
+
+        /* Additional styles for checked state of dark mode toggle */
+        .toggle-input:checked + .toggle-icon .toggle-icon-sun {
+            transform: rotate(180deg); /* Rotate the sun icon */
+            
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Nathan Corp</h1>
+        <p style="text-align: center; font-weight: bold;">API KEY: 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</p>
         <div class="toggle-container">
-            <label class="toggle-label" for="dark-mode">Light Mode</label>
-            <label class="toggle-slider">
-                <input class="toggle-input" type="checkbox" id="dark-mode">
-                <span class="slider"></span>
+            <input class="toggle-input" type="checkbox" id="dark-mode" onchange="toggleDarkMode()">
+            <label class="toggle-icon" for="dark-mode">
+                <span class="toggle-icon-sun">&#9728;</span>
             </label>
         </div>
         <div class="website-grid">
@@ -164,53 +153,69 @@
                 <div class="iframe-container">
                     <iframe src="https://nathangpt-eight.vercel.app/" id="nathangpt" frameborder="0"></iframe>
                 </div>
+                <button class="reload-button" data-iframe="nathangpt">Reload</button>
             </div>
             <div class="website-card">
                 <h2>Paddle Board Game</h2>
                 <div class="iframe-container">
                     <iframe src="https://pbg-zeta.vercel.app/" id="pbgzeta" frameborder="0"></iframe>
                 </div>
+                <button class="reload-button" data-iframe="pbgzeta">Reload</button>
             </div>
             <div class="website-card">
                 <h2>Figure Out What Ur Name Means</h2>
                 <div class="iframe-container">
                     <iframe src="https://figureoutwhaturnamemeans.vercel.app/" id="figuroutname" frameborder="0"></iframe>
                 </div>
+                <button class="reload-button" data-iframe="figuroutname">Reload</button>
             </div>
             <div class="website-card">
                 <h2>Random Number Generator</h2>
                 <div class="iframe-container">
                     <iframe src="https://randnumbergen.vercel.app/" id="randnumgen" frameborder="0"></iframe>
                 </div>
+                <button class="reload-button" data-iframe="randnumgen">Reload</button>
             </div>
             <div class="website-card">
                 <h2>Random Name Generator</h2>
                 <div class="iframe-container">
                     <iframe src="https://randnamegen.vercel.app/" id="randnamegen" frameborder="0"></iframe>
                 </div>
+                <button class="reload-button" data-iframe="randnamegen">Reload</button>
             </div>
         </div>
-
-        <script>
-            const darkModeToggle = document.getElementById("dark-mode");
-
-            darkModeToggle.addEventListener("change", () => {
-                document.body.classList.toggle("dark-mode");
-                const toggleLabel = document.querySelector(".toggle-label");
-                toggleLabel.textContent = darkModeToggle.checked ? "Dark Mode" : "Light Mode";
-            });
-
-            // Set initial mode based on system preference
-            if (
-                window.matchMedia &&
-                window.matchMedia("(prefers-color-scheme: dark)").matches
-            ) {
-                darkModeToggle.checked = true;
-                document.body.classList.add("dark-mode");
-                const toggleLabel = document.querySelector(".toggle-label");
-                toggleLabel.textContent = "Dark Mode";
-            }
-        </script>
     </div>
+    <script>
+        // Reload button functionality
+        const reloadButtons = document.querySelectorAll(".reload-button");
+        reloadButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const iframeId = button.dataset.iframe;
+                const iframe = document.getElementById(iframeId);
+                iframe.src = iframe.src; // Reload the iframe by setting the same src
+            });
+        });
+
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            const darkModeToggle = document.getElementById("dark-mode");
+            const container = document.querySelector(".toggle-container");
+            if (darkModeToggle.checked) {
+                document.body.classList.add("dark-mode");
+                container.title = "Switch to Light Mode";
+            } else {
+                document.body.classList.remove("dark-mode");
+                container.title = "Switch to Dark Mode";
+            }
+        }
+
+        // Set initial mode based on system preference
+        if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            const darkModeToggle = document.getElementById("dark-mode");
+            darkModeToggle.checked = true;
+            document.body.classList.add("dark-mode");
+            document.querySelector(".toggle-container").title = "Switch to Light Mode";
+        }
+    </script>
 </body>
 </html>
