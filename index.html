@@ -96,37 +96,6 @@
         .toggle-input:checked + .toggle-icon .toggle-icon-sun {
             transform: rotate(180deg); /* Rotate the sun icon */
         }
-
-        /* Additional styles for API key and copy button */
-        .api-key-container {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        .api-key {
-            font-weight: bold;
-            font-size: 18px;
-            background-color: #f5f5f5;
-            padding: 8px 16px;
-            border-radius: 4px;
-            display: inline-block;
-            margin-right: 10px;
-            user-select: none;
-        }
-
-        .copy-button {
-            background-color: #2196F3;
-            color: #ffffff;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .copy-button:hover {
-            background-color: #0d8bf4;
-        }
     </style>
 </head>
 <body>
@@ -137,10 +106,6 @@
             <label class="toggle-icon" for="dark-mode">
                 <span class="toggle-icon-sun">&#9728;</span>
             </label>
-        </div>
-        <div class="api-key-container">
-            <span class="api-key" id="apiKey">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</span>
-            <button class="copy-button" onclick="copyApiKey()">Copy</button>
         </div>
         <div class="website-grid">
             <!-- Your website cards here -->
@@ -176,18 +141,6 @@
             darkModeToggle.checked = true;
             document.body.classList.add("dark-mode");
             document.querySelector(".toggle-container").title = "Switch to Light Mode";
-        }
-
-        // Function to copy API key
-        function copyApiKey() {
-            const apiKeyElement = document.getElementById("apiKey");
-            const tempInput = document.createElement("input");
-            tempInput.value = apiKeyElement.textContent;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
-            alert("API key copied to clipboard!");
         }
     </script>
 </body>
