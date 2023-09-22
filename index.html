@@ -1,4 +1,224 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/x-icon" href="favicon.ico/ms-icon-144x144.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+
+    <title>Nathan and Co.</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #2196F3;
+        }
+
+        .website-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            grid-gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .website-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .website-card h2 {
+            margin-top: 0;
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #000000;
+        }
+
+        .iframe-container {
+            position: relative;
+            padding-bottom: 75%; /* Aspect ratio 4:3 for the iframe */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .dark-mode {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        .dark-mode .website-card {
+            background-color: #222222;
+        }
+
+        .dark-mode .website-card h2 {
+            color: #ffffff;
+        }
+
+        /* Additional styles for reload buttons */
+        .reload-button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #2196F3;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .reload-button:hover {
+            background-color: #0d8bf4;
+        }
+
+        /* Additional styles for dark mode toggle icons */
+        .toggle-icon {
+            font-size: 25px; /* Increase the font size to make it bigger */
+            cursor: pointer; /* Add cursor pointer to show it's clickable */
+            margin-right: 10px; /* Add some spacing between icons */
+            transition: transform 0.3s; /* Add transition for smooth rotation */
+        }
+
+        /* Additional styles for dark mode toggle container */
+        .toggle-container {
+            text-align: center;
+            margin-bottom: 20px;
+            position: absolute; /* Position the container absolutely */
+            top: 0.00000001; /* Position at the top */
+            left: 50%; /* Center the container horizontally */
+            transform: translateX(-50%); /* Center the container perfectly */
+        }
+
+        .toggle-container .toggle-icon {
+            margin: 0; /* Remove default margin for better alignment */
+        }
+
+        /* Additional styles for dark mode toggle label */
+        .toggle-label {
+            font-weight: bold;
+            color: #000000;
+            cursor: pointer;
+        }
+
+        /* Additional styles for dark mode toggle input */
+        .toggle-input {
+            display: none; /* Hide the default input */
+        }
+
+        /* Additional styles for checked state of dark mode toggle */
+        .toggle-input:checked + .toggle-icon .toggle-icon-sun {
+            transform: rotate(180deg); /* Rotate the sun icon */
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Nathan Corp</h1>
+  
+        <div class="toggle-container">
+            <input class="toggle-input" type="checkbox" id="dark-mode" onchange="toggleDarkMode()">
+            <label class="toggle-icon" for="dark-mode">
+                <span class="toggle-icon-sun">&#9728;</span>
+            </label>
+        </div>
+        <div class="website-grid">
+            <div class="website-card">
+                <h2>NathanGPT</h2>
+                <div class="iframe-container">
+                    <iframe src="https://nathangpt-eight.vercel.app/" id="nathangpt" frameborder="0"></iframe>
+                </div>
+                <button class="reload-button" data-iframe="nathangpt">Reload</button>
+            </div>
+            <div class="website-card">
+                <h2>Paddle Board Game</h2>
+                <div class="iframe-container">
+                    <iframe src="https://pbg-zeta.vercel.app/" id="pbgzeta" frameborder="0"></iframe>
+                </div>
+                <button class="reload-button" data-iframe="pbgzeta">Reload</button>
+            </div>
+            <div class="website-card">
+                <h2>Figure Out What Ur Name Means</h2>
+                <div class="iframe-container">
+                    <iframe src="https://figureoutwhaturnamemeans.vercel.app/" id="figuroutname" frameborder="0"></iframe>
+                </div>
+                <button class="reload-button" data-iframe="figuroutname">Reload</button>
+            </div>
+            <div class="website-card">
+                <h2>Random Number Generator</h2>
+                <div class="iframe-container">
+                    <iframe src="https://randnumbergen.vercel.app/" id="randnumgen" frameborder="0"></iframe>
+                </div>
+                <button class="reload-button" data-iframe="randnumgen">Reload</button>
+            </div>
+            <div class="website-card">
+                <h2>Random Name Generator</h2>
+                <div class="iframe-container">
+                    <iframe src="https://randnamegen.vercel.app/" id="randnamegen" frameborder="0"></iframe>
+                </div>
+                <button class="reload-button" data-iframe="randnamegen">Reload</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Reload button functionality
+        const reloadButtons = document.querySelectorAll(".reload-button");
+        reloadButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const iframeId = button.dataset.iframe;
+                const iframe = document.getElementById(iframeId);
+                iframe.src = iframe.src; // Reload the iframe by setting the same src
+            });
+        });
+
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            const darkModeToggle = document.getElementById("dark-mode");
+            const container = document.querySelector(".toggle-container");
+            if (darkModeToggle.checked) {
+                document.body.classList.add("dark-mode");
+                container.title = "Switch to Light Mode";
+            } else {
+                document.body.classList.remove("dark-mode");
+                container.title = "Switch to Dark Mode";
+            }
+        }
+
+        // Set initial mode based on system preference
+        if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            const darkModeToggle = document.getElementById("dark-mode");
+            darkModeToggle.checked = true;
+            document.body.classList.add("dark-mode");
+            document.querySelector(".toggle-container").title = "Switch to Light Mode";
+        }
+    </script>
+</body>
+</html>
 <html>
 <head>
     <link rel="icon" type="image/x-icon" href="favicon.ico/ms-icon-144x144.png">
@@ -154,8 +374,6 @@
                     <iframe src="https://nathangpt-eight.vercel.app/" id="nathangpt" frameborder="0"></iframe>
                 </div>
                 <button class="reload-button" data-iframe="nathangpt">Reload</button>
-                <!-- Add the website link here -->
-                <a href="https://calculator-five-pi.vercel.app/" target="_blank">Visit Website</a>
             </div>
             <div class="website-card">
                 <h2>Paddle Board Game</h2>
@@ -163,10 +381,28 @@
                     <iframe src="https://pbg-zeta.vercel.app/" id="pbgzeta" frameborder="0"></iframe>
                 </div>
                 <button class="reload-button" data-iframe="pbgzeta">Reload</button>
-                <!-- Add the website link here -->
-                <a href="https://calculator-five-pi.vercel.app/" target="_blank">Visit Website</a>
             </div>
-            <!-- ... (other website cards) ... -->
+            <div class="website-card">
+                <h2>Figure Out What Ur Name Means</h2>
+                <div class="iframe-container">
+                    <iframe src="https://figureoutwhaturnamemeans.vercel.app/" id="figuroutname" frameborder="0"></iframe>
+                </div>
+                <button class="reload-button" data-iframe="figuroutname">Reload</button>
+            </div>
+            <div class="website-card">
+                <h2>Random Number Generator</h2>
+                <div class="iframe-container">
+                    <iframe src="https://randnumbergen.vercel.app/" id="randnumgen" frameborder="0"></iframe>
+                </div>
+                <button class="reload-button" data-iframe="randnumgen">Reload</button>
+            </div>
+            <div class="website-card">
+                <h2>Random Name Generator</h2>
+                <div class="iframe-container">
+                    <iframe src="https://randnamegen.vercel.app/" id="randnamegen" frameborder="0"></iframe>
+                </div>
+                <button class="reload-button" data-iframe="randnamegen">Reload</button>
+            </div>
         </div>
     </div>
     <script>
