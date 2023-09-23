@@ -1,0 +1,127 @@
+body {
+	background-color: #ffffff;
+    color: #000000;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+	max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+	text-align: center;
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #2196F3;
+}
+
+.website-grid {
+	display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    grid-gap: 40px;
+    margin-bottom: 30px;
+}
+
+.website-card {
+border-radius: 8px;
+overflow: hidden;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+background-color: #f5f5f5;
+padding: 20px;
+}
+
+.website-card h2 {
+margin-top: 0;
+font-size: 24px;
+margin-bottom: 10px;
+color: #000000;
+}
+
+.iframe-container {
+position: relative;
+padding-bottom: 75%; /* Aspect ratio 4:3 for the iframe */
+height: 0;
+overflow: hidden;
+}
+
+.iframe-container iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+.dark-mode {
+	background-color: #000000;
+    color: #ffffff;
+}
+
+/*Need to correct indents*/
+        .dark-mode .website-card {
+            background-color: #222222;
+        }
+
+        .dark-mode .website-card h2 {
+            color: #ffffff;
+        }
+
+        /* Additional styles for reload buttons */
+        .reload-button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #2196F3;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .reload-button:hover {
+            background-color: #0d8bf4;
+        }
+
+        /* Additional styles for dark mode toggle icons */
+        .toggle-icon {
+            font-size: 25px; /* Increase the font size to make it bigger */
+            cursor: pointer; /* Add cursor pointer to show it's clickable */
+            margin-right: 10px; /* Add some spacing between icons */
+            transition: transform 0.3s; /* Add transition for smooth rotation */
+        }
+
+        /* Additional styles for dark mode toggle container */
+        .toggle-container {
+            text-align: center;
+            margin-bottom: 20px;
+            position: absolute; /* Position the container absolutely */
+            top: 0.00000001; /* Position at the top */
+            left: 50%; /* Center the container horizontally */
+            transform: translateX(-50%); /* Center the container perfectly */
+        }
+
+        .toggle-container .toggle-icon {
+            margin: 0; /* Remove default margin for better alignment */
+        }
+
+        /* Additional styles for dark mode toggle label */
+        .toggle-label {
+            font-weight: bold;
+            color: #000000;
+            cursor: pointer;
+        }
+
+        /* Additional styles for dark mode toggle input */
+        .toggle-input {
+            display: none; /* Hide the default input */
+        }
+
+        /* Additional styles for checked state of dark mode toggle */
+        .toggle-input:checked + .toggle-icon .toggle-icon-sun {
+            transform: rotate(180deg); /* Rotate the sun icon */
+            
+        }
