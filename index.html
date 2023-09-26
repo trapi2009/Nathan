@@ -1,73 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="icon" type="image/x-icon" href="favicon.ico/ms-icon-144x144.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="stylesheet" href="style.css">
-    <title>Nathan and Co.</title>
-</head>
-<body>
-    <div class="container">
-        <h1>Nathan and Co.</h1>
+<!DOCTYPE html><html><head>
+    <script src="p5.js"></script>
+    <script src="p5.dom.min.js"></script>
+    <script src="p5.sound.min.js"></script>
+<script src="./p5.play.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8">
+
+  </head>
+  <body>
+      <script src="sketch.js"></script>
   
-        <div class="toggle-container">
-            <input class="toggle-input" type="checkbox" id="dark-mode" onchange="toggleDarkMode()">
-            <label class="toggle-icon" for="dark-mode">
-                <span class="toggle-icon-sun">&#9728;</span>
-            </label>
-        </div>
-        <div class="website-grid">
-            <div class="website-card">
-                <h2>NathanGPT</h2>
-                <div class="iframe-container">
-                    <iframe src="https://nathangpt-eight.vercel.app/" id="nathangpt" frameborder="0"></iframe>
-                </div>
-                <button class="reload-button" data-iframe="nathangpt">Reload</button>
-            </div>
-            <div class="website-card">
-                <h2>Paddle Board Game</h2>
-                <div class="iframe-container">
-                    <iframe src="https://pbg-zeta.vercel.app/" id="pbgzeta" frameborder="0"></iframe>
-                </div>
-                <button class="reload-button" data-iframe="pbgzeta">Reload</button>
-            </div>
-            <div class="website-card">
-                <h2>Figure Out What Ur Name Means</h2>
-                <div class="iframe-container">
-                    <iframe src="https://figureoutwhaturnamemeans.vercel.app/" id="figuroutname" frameborder="0"></iframe>
-                </div>
-                <button class="reload-button" data-iframe="figuroutname">Reload</button>
-            </div>
-            <div class="website-card">
-                <h2>Random Number Generator</h2>
-                <div class="iframe-container">
-                    <iframe src="https://randnumbergen.vercel.app/" id="randnumgen" frameborder="0"></iframe>
-                </div>
-                <button class="reload-button" data-iframe="randnumgen">Reload</button>
-            </div>
-            <div class="website-card">
-                <h2>Random Name Generator</h2>
-                <div class="iframe-container">
-                    <iframe src="https://randnamegen.vercel.app/" id="randnamegen" frameborder="0"></iframe>
-                </div>
-                <button class="reload-button" data-iframe="randnamegen">Reload</button>
-            </div>
-        </div>
-    </div>
-    <script>
-        // Reload button functionality
-        const reloadButtons = document.querySelectorAll(".reload-button");
-        reloadButtons.forEach((button) => {
-            button.addEventListener("click", () => {
-                const iframeId = button.dataset.iframe;
-                const iframe = document.getElementById(iframeId);
-                iframe.src = iframe.src; // Reload the iframe by setting the same src
-            });
-        });
-    </script>
-    <script src="DarkLight.js"></script>
-</body>
-</html>
+
+</body></html>
